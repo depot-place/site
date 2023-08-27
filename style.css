@@ -1,6 +1,6 @@
 :root {
   --primary: #69886a;
-  --triad: #acc4c5;
+  --triad: #426263;
   --secondary: #da5e50;
   --offwhite: #f8f2ec;
   --black: rgb(50, 45, 41);
@@ -24,6 +24,14 @@ header {
   margin: 1rem;
   padding: 1.5rem;
   background-color: rgba(50, 45, 41, 0.2);
+}
+
+a {
+  color: var(--black);
+}
+
+a:visited {
+  color: var(--black);
 }
 
 .gradient {
