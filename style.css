@@ -1,0 +1,68 @@
+:root {
+  --primary: #69886a;
+  --triad: #acc4c5;
+  --secondary: #da5e50;
+  --offwhite: #f8f2ec;
+  --black: rgb(50, 45, 41);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Orbit";
+  background: var(--black);
+  overflow: hidden;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 4rem;
+  margin: 1rem;
+  padding: 1.5rem;
+  background-color: rgba(50, 45, 41, 0.2);
+}
+
+.gradient {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(45deg, var(--primary), var(--triad));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s ease-out background-color;
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite, fadeIn 1s ease-in;
+}
+
+.gradient p {
+  animation: fadeIn 1s ease-in;
+  white-space: nowrap;
+  color: var(--offwhite);
+  padding: 0.5rem;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 0%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
