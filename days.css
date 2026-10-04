@@ -20,9 +20,25 @@ body {
   background: var(--black);
 }
 
+a {
+    background-color: var(--black);
+    color: var(--offwhite);
+    text-decoration: underline;
+    font-style: italic;
+}
+
 ::selection {
   background-color: var(--pink);
   color: var(--offwhite);
+}
+
+.depot-type {
+    text-transform: uppercase;
+    background-color: var(--pink);
+    color: var(--offwhite);
+    font-style: italic;
+    display: inline-block;
+    animation: wobble 2.5s ease-in-out infinite;
 }
 
 .marquee {
@@ -45,6 +61,10 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .marquee-track {
+    animation: none;
+  }
+
+  .depot-type {
     animation: none;
   }
 }
@@ -192,6 +212,12 @@ body {
   }
 }
 
+
+@keyframes wobble {
+  0%, 100% { transform: rotate(-1deg) skewX(-2deg); }
+  50%      { transform: rotate(1deg) skewX(2deg); }
+}
+
 @media screen and (width < 800px) {
   .about {
     flex-direction: column-reverse;
@@ -213,3 +239,4 @@ body {
     max-width: 50vw;
   }
 }
+`
