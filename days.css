@@ -26,19 +26,19 @@ body {
 }
 
 .depot-type {
-    text-transform: uppercase;
-    background-color: var(--pink);
-    color: var(--offwhite);
-    font-style: italic;
-    display: inline-block;
-    animation: wobble 2.5s ease-in-out infinite;
+  text-transform: uppercase;
+  background-color: var(--pink);
+  color: var(--offwhite);
+  font-style: italic;
+  display: inline-block;
+  animation: wobble 2.5s ease-in-out infinite;
 }
 
 .glitch-dot-cool {
-    background-color: var(--black);
-    color: var(--offwhite);
-    text-decoration: underline;
-    font-style: italic;
+  background-color: var(--black);
+  color: var(--offwhite);
+  text-decoration: underline;
+  font-style: italic;
 }
 
 .marquee {
@@ -212,10 +212,14 @@ body {
   }
 }
 
-
 @keyframes wobble {
-  0%, 100% { transform: rotate(-1deg) skewX(-2deg); }
-  50%      { transform: rotate(1deg) skewX(2deg); }
+  0%,
+  100% {
+    transform: rotate(-1deg) skewX(-2deg);
+  }
+  50% {
+    transform: rotate(1deg) skewX(2deg);
+  }
 }
 
 @media screen and (width < 800px) {
@@ -239,4 +243,3 @@ body {
     max-width: 50vw;
   }
 }
-`
