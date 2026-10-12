@@ -22,6 +22,11 @@ body {
   overflow-x: hidden;
 }
 
+html.body-open,
+body.modal-open {
+  overflow-y: hidden;
+}
+
 a {
   color: rgb(10, 157, 210);
 }
