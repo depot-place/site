@@ -60,7 +60,6 @@ a {
 .marquee-track h1 {
   flex-shrink: 0;
   padding-right: 10rem;
-  /* font-size: 12rem; */
   font-size: calc(24px + 10vw);
 }
 
@@ -409,5 +408,14 @@ a {
 
   .homepage-image {
     max-width: 50vw;
+  }
+
+  .modal-hint {
+    display: none;
+  }
+
+  .image-modal {
+    padding: 0px;
+    max-width: 100vw;
   }
 }
