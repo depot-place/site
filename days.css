@@ -121,6 +121,15 @@ a {
     0 14px 32px rgba(50, 45, 41, 0.1);
 }
 
+#smiley {
+  display: inline-block;
+  transition: transform 0.2s ease-in-out;
+}
+
+.button:hover #smiley {
+  transform: rotate(90deg) translate(5px, 0);
+}
+
 .attendance {
   --cap: 12;
   margin-top: 1rem;
