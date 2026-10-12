@@ -89,7 +89,158 @@
                     target="_blank" rel="noopener noreferrer">here</a></h3>
         </section>
 
+        <section id="gallery" class="gallery-section">
+            <h2>Gallery</h2>
+            <div class="gallery">
+                <button type="button" class="gallery-btn" aria-label="View full size image">
+                    <img loading="lazy" src="assets/photos/gallery/20231008_180358.webp" alt="" />
+                </button>
+                <button type="button" class="gallery-btn" aria-label="View full size image">
+                    <img loading="lazy" src="assets/photos/gallery/20240309_154523.webp" alt="" />
+                </button>
+                <button type="button" class="gallery-btn" aria-label="View full size image">
+                    <img loading="lazy" src="assets/photos/gallery/20220717_114449.webp" alt="" />
+                </button>
+                <button type="button" class="gallery-btn" aria-label="View full size image">
+                    <img loading="lazy" src="assets/photos/gallery/IMG_0291.webp" alt="" />
+                </button>
+                <button type="button" class="gallery-btn" aria-label="View full size image">
+                    <img loading="lazy" src="assets/photos/gallery/20230414_185144.webp" alt="" />
+                </button>
+                <button type="button" class="gallery-btn" aria-label="View full size image">
+                    <img loading="lazy" src="assets/photos/gallery/IMG_1553.webp" alt="" />
+                </button>
+                <button type="button" class="gallery-btn" aria-label="View full size image">
+                    <img loading="lazy" src="assets/photos/gallery/20240411_170121.webp" alt="" />
+                </button>
+                <button type="button" class="gallery-btn" aria-label="View full size image">
+                    <img loading="lazy" src="assets/photos/gallery/IMG_0289.webp" alt="" />
+                </button>
+                <button type="button" class="gallery-btn" aria-label="View full size image">
+                    <img loading="lazy" src="assets/photos/gallery/20250801_172856.webp" alt="" />
+                </button>
+                <button type="button" class="gallery-btn" aria-label="View full size image">
+                    <img loading="lazy" src="assets/photos/gallery/IMG_1695.webp" alt="" />
+                </button>
+                <button type="button" class="gallery-btn" aria-label="View full size image">
+                    <img loading="lazy" src="assets/photos/gallery/20230425_123819.webp" alt="" />
+                </button>
+                <button type="button" class="gallery-btn" aria-label="View full size image">
+                    <img loading="lazy" src="assets/photos/gallery/20241007_085717.webp" alt="" />
+                </button>
+                <button type="button" class="gallery-btn" aria-label="View full size image">
+                    <img loading="lazy" src="assets/photos/gallery/IMG_0059.webp" alt="" />
+                </button>
+                <button type="button" class="gallery-btn" aria-label="View full size image">
+                    <img loading="lazy" src="assets/photos/gallery/IMG_0055.webp" alt="" />
+                </button>
+                <button type="button" class="gallery-btn" aria-label="View full size image">
+                    <img loading="lazy" src="assets/photos/gallery/IMG_0193.webp" alt="" />
+                </button>
+                <button type="button" class="gallery-btn" aria-label="View full size image">
+                    <img loading="lazy" src="assets/photos/gallery/IMG_0314.webp" alt="" />
+                </button>
+                <button type="button" class="gallery-btn" aria-label="View full size image">
+                    <img loading="lazy" src="assets/photos/gallery/IMG_0339.webp" alt="" />
+                </button>
+
+                <button type="button" class="gallery-btn" aria-label="View full size image">
+                    <img loading="lazy" src="assets/photos/gallery/IMG_1691.webp" alt="" />
+                </button>
+                <button type="button" class="gallery-btn" aria-label="View full size image">
+                    <img loading="lazy" src="assets/photos/gallery/IMG_1703.webp" alt="" />
+                </button>
+                <button type="button" class="gallery-btn" aria-label="View full size image">
+                    <img loading="lazy" src="assets/photos/gallery/IMG_1815.webp" alt="" />
+                </button>
+            </div>
+        </section>
+
+        <dialog id="image-modal" class="image-modal">
+            <button id="close-modal" class="modal-close-btn" aria-label="Close modal">&times;</button>
+            <img id="modal-image" src="" alt="Full size image" />
+            <p class="modal-hint">Use <kbd>&larr;</kbd> and <kbd>&rarr;</kbd> arrow keys to navigate</p>
+        </dialog>
+
     </div>
 </body>
+
+
+<script>
+    const dialog = document.getElementById('image-modal');
+    const modalImage = document.getElementById('modal-image');
+    const closeButton = document.getElementById('close-modal');
+    const galleryButtons = document.querySelectorAll('.gallery-btn');
+    let currentIndex = 0;
+
+    galleryButtons.forEach((btn, index) => {
+        btn.addEventListener('click', () => {
+            currentIndex = index;
+            const img = btn.querySelector('img');
+            modalImage.src = img.src;
+            dialog.showModal();
+            document.body.classList.add('modal-open');
+            // Add show class after a tiny delay to trigger transition
+            setTimeout(() => dialog.classList.add('show'), 10);
+        });
+    });
+
+    function closeDialog() {
+        dialog.classList.remove('show');
+        // Wait for transition to finish before actually closing
+        setTimeout(() => dialog.close(), 300);
+    }
+
+    closeButton.addEventListener('click', closeDialog);
+    dialog.addEventListener('click', (e) => {
+        if (e.target === dialog) closeDialog();
+    });
+
+    dialog.addEventListener('close', () => {
+        document.body.classList.remove('modal-open');
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (!dialog.open) return;
+
+        if (e.key === 'ArrowRight') {
+            currentIndex = (currentIndex + 1) % galleryButtons.length;
+            modalImage.src = galleryButtons[currentIndex].querySelector('img').src;
+        } else if (e.key === 'ArrowLeft') {
+            currentIndex = (currentIndex - 1 + galleryButtons.length) % galleryButtons.length;
+            modalImage.src = galleryButtons[currentIndex].querySelector('img').src;
+        }
+    });
+
+    // Swipe gesture support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    dialog.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    dialog.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+        const minSwipeDistance = 50;
+        const swipeDistance = touchEndX - touchStartX;
+
+        if (Math.abs(swipeDistance) < minSwipeDistance) return;
+
+        if (swipeDistance < 0) {
+            // Swiped left -> next image
+            currentIndex = (currentIndex + 1) % galleryButtons.length;
+            modalImage.src = galleryButtons[currentIndex].querySelector('img').src;
+        } else {
+            // Swiped right -> previous image
+            currentIndex = (currentIndex - 1 + galleryButtons.length) % galleryButtons.length;
+            modalImage.src = galleryButtons[currentIndex].querySelector('img').src;
+        }
+    }
+</script>
 
 </html>
