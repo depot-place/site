@@ -52,7 +52,7 @@ a {
 
 .marquee {
   overflow: hidden;
-  width: 100vw;
+  width: 100%;
 }
 
 .marquee-track {
@@ -76,8 +76,6 @@ a {
 }
 
 .gradient {
-  width: 100%;
-  min-height: 100vh;
   background: linear-gradient(45deg, var(--pink), var(--orange));
   transition: 0.5s ease-out background-color;
   background-size: 200% 200%;
@@ -224,7 +222,7 @@ a {
   display: grid;
   grid-template-columns: repeat(
     auto-fit,
-    minmax(max(350px, calc((100% - 3rem) / 4)), 1fr)
+    minmax(min(100%, max(350px, calc((100% - 3rem) / 4))), 1fr)
   );
   gap: 1rem;
   align-items: start;
