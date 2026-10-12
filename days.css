@@ -7,6 +7,7 @@
   --offwhite: #f8f2ec;
   --black: rgb(50, 45, 41);
   --pink: #fa156d;
+  --layout-padding: 2rem;
 }
 
 * {
@@ -85,7 +86,7 @@ a {
 }
 
 .info-block {
-  padding: 2rem;
+  padding: var(--layout-padding);
   max-width: 50vw;
 }
 
@@ -211,7 +212,7 @@ a {
 /* gallery styles */
 .gallery-section {
   text-align: center;
-  padding: 2rem;
+  padding: var(--layout-padding);
 }
 
 .gallery-section h2 {
@@ -389,6 +390,10 @@ a {
 }
 
 @media screen and (width < 800px) {
+  :root {
+    --layout-padding: 1rem;
+  }
+
   .about {
     flex-direction: column-reverse;
   }
@@ -398,8 +403,8 @@ a {
   }
 
   .about .image-composition {
-    margin-inline: 2rem;
-    width: calc(100% - 4rem);
+    margin-inline: var(--layout-padding);
+    width: calc(100% - (var(--layout-padding) * 2));
     flex-shrink: 0;
   }
 
